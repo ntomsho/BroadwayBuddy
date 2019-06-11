@@ -1,7 +1,6 @@
 const url = "http://www.playbill.com/productions?venue-type=broadway"
 const showParse = require('./show-parse');
 let links = [];
-let shows = ["test"];
 
 const request = require('request-promise');
 const cheerio = require('cheerio');
