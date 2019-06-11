@@ -7,6 +7,15 @@ mongoose
     .then(() => console.log("Connected to MongoDB successfully"))
     .catch(err => console.log(err));
 const port = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+const users = require("./routes/api/users");
+const shows = require("./routes/api/shows");
+const people = require("./routes/api/people");
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-app.get("/", (req, res) => res.send("Hello Again"));
+app.get("/", (req, res) => res.send("You Again?"));
+app.use("/api/users", users);
+app.use("/api/shows", shows);
+app.use("/api/people", people);
