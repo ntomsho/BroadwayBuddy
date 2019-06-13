@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const express = require("express");
 const app = express();
 const db = require('./config/keys').mongoURI;
+const passport = require('passport');
+app.use(passport.initialize());
+require('./config/passport')(passport);
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => console.log("Connected to MongoDB successfully"))
@@ -15,7 +18,7 @@ const shows = require("./routes/api/shows");
 const people = require("./routes/api/people");
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-app.get("/", (req, res) => res.send("You Again?"));
+// app.get("/", (req, res) => res.send("You Again?"));
 app.use("/api/users", users);
 app.use("/api/shows", shows);
 app.use("/api/people", people);
