@@ -19,7 +19,7 @@ router.post('/register', (req, res) => {
     User.findOne({ email: req.body.email })
         .then(user => {
             if (user) {
-                return res.status(400).json({ email: "A user has already registered with this address"})
+                return res.status(400).json({ email: "A user has already registered with that email address"})
             } else {
                 const newUser = new User({
                     email: req.body.email,
@@ -52,7 +52,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
-                        const payload = {id: user.id, name: user.name};
+                        const payload = {id: user.id, email: user.email};
                         jwt.sign(
                             payload,
                             keys.secretOrKey,
