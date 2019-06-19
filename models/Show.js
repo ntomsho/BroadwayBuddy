@@ -21,5 +21,9 @@ const ShowSchema = new Schema({
     coverUrl: {
         type: String,
         required: true
+    },
+    timeStamp: {
+        type: Date,
+        default: Date.now
     }
 })
